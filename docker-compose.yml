@@ -1,0 +1,42 @@
+version: '3'
+
+networks:
+  internal:
+    driver: bridge
+
+services:
+  influxdb:
+    image: influxdb:latest
+    container_name: influxdb
+    volumes:
+      - ./db/influxdb:/var/lib/influxdb  # Data persistency
+    networks:
+      internal:
+        aliases:
+          - influxdb
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    depends_on:
+      - influxdb
+    volumes:
+      - ./db/grafana:/var/lib/grafana  # Data persistency
+    networks:
+      internal:
+        aliases:
+          - grafana
+
+  nginx-proxy:
+    image: martin/nginx:latest
+    ports:
+      - "3000:3000"  # Grafana
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - grafana
+    networks:
+      internal:
+        aliases:
+          - nginx
