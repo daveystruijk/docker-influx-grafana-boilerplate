@@ -5,10 +5,3 @@ services:
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
       - ./nginx/conf.d.prod:/etc/nginx/conf.d
-  influxdb:
-    environment:
-      - INFLUXDB_HTTP_LOG_ENABLED=true
-      - INFLUXDB_LOGGING_LEVEL=INFO
-  grafana:
-    environment:
-      - GF_LOG_LEVEL=INFO
