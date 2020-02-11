@@ -3,7 +3,7 @@
 This repo contains a docker-compose setup with:
 - InfluxDB
 - Grafana
-- Nginx
+- Nginx (proxy)
 
 ## Development
 
@@ -16,6 +16,6 @@ Then in Grafana, you can add `http://influx:8086` as a Data Source to connect to
 The `docker-compose.prod.yml` also contains some additional config for production environments:
 - HTTPS (w/ Letsencrypt)
 
-First, you should setup [https://certbot.eff.org/](Certbot) on the host to automatically manage certificates for your domain. Then, edit `nginx/conf.d.prod/grafana.conf` and change `my.example.com` to the correct domain.
+First, you should setup [Certbot](https://certbot.eff.org/) on the host to automatically manage certificates for your domain. Then, edit `nginx/conf.d.prod/grafana.conf` and change `my.example.com` to the correct domain.
 
 After doing the above, you can execute `./run_prod.sh` to (re)start the server.
