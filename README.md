@@ -9,7 +9,7 @@ This repo contains a docker-compose setup with:
 
 To start using it, simply clone the repo and execute `./run.sh`.
 
-Then in Grafana, you can add `http://influx:8086` as a Data Source to connect to it.
+Then in Grafana, you can add `http://influxdb:8086` as a Data Source to connect to it.
 
 ## Production
 
